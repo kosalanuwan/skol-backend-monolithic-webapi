@@ -24,28 +24,28 @@ services:
     # user: vscode
 
     depends_on:
-      - mssql-db
+      - db
 
     # Use "forwardPorts" in **devcontainer.json** to forward an app port locally. 
     # (Adding the "ports" property to this file will not forward from a Codespace.)
+
+  db:
+    container_name: skol-db
+    image: mcr.microsoft.com/azure-sql-edge:latest
+
+    environment:
+      ACCEPT_EULA: Y
+      MSSQL_SA_PASSWORD: P@ssw0rd
+      MSSQL_PID: Developer
+
+    ports:
+      - 1433:1433
     
-  mssql-db:
-      container_name: skol-db
-      image: mcr.microsoft.com/azure-sql-edge:latest
-
-      environment:
-        ACCEPT_EULA: Y
-        MSSQL_SA_PASSWORD: P@ssw0rd
-        MSSQL_PID: Developer
-
-      ports:
-        - 1433:1433
-      
-      volumes:
-        - mssql-data:/data
+    volumes:
+      - sql-data:/data
 
 volumes:
-  mssql-data:
+  sql-data:
 
 # networks:
 #   default:

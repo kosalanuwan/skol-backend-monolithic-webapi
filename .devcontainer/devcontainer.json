@@ -1,5 +1,6 @@
 {
-	"name": "C# (.NET)",
+	"name": "skol-backend-api",
+
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "api",
 	"workspaceFolder": "/workspace",

@@ -1,5 +1,5 @@
 #!/bin/zsh
-echo "Trust the cert on the current platform"
+echo 'Trust the cert on the current platform.'
 dotnet dev-certs https --clean
 dotnet dev-certs https -t
 
@@ -8,5 +8,9 @@ dotnet dev-certs https -t
 if [ -f ./*.sln ]; 
 then
     echo '.NET solution file found.'
+
+    echo 'Removing obj and bin folders ...'
+    rm -rf **/obj **/bin
+
     dotnet restore --no-cache --force
 fi
