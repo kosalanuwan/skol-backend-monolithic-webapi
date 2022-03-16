@@ -1,9 +1,16 @@
 {
 	"name": "skol-backend-api",
+	"image": "mcr.microsoft.com/vscode/devcontainers/base:dev-bullseye",
 
-	"dockerComposeFile": "docker-compose.yml",
-	"service": "api",
-	"workspaceFolder": "/workspace",
+    "workspaceMount": "src=${localWorkspaceFolder},dst=/workspace,type=bind,consistency=cached",
+    "workspaceFolder": "/workspace",
+	
+	"containerEnv":{
+		"ASPNETCORE_URLS": "https://+:5001;http://+:5000",
+      	"ASPNETCORE_ENVIRONMENT": "Development",
+      	"DOTNET_CLI_TELEMETRY_OPTOUT": 1,
+      	"DOTNET_NOLOGO": 1,
+	},
 
 	"features": {
 		"common": {
@@ -13,7 +20,14 @@
 			"installZsh": true,
 			"upgradePackages": true,
 		},
-		"dotnet": "6.0",
+		"dotnet": {
+			"version": "6.0",
+      		"runtimeOnly": false
+		},
+		"node": {
+			"version": "none",
+        	"nodeGypDependencies": true,
+		},
 		"github-cli": "latest",
 		"azure-cli": "latest"
 	},
@@ -28,7 +42,9 @@
     	"omnisharp.organizeImportsOnFormat": true,
 		"omnisharp.useEditorFormattingSettings": true,
 		"omnisharp.useModernNet": true,
+
 		"razor.disabled": true,
+
 		"terminal.integrated.defaultProfile.linux": "zsh",
 	},
 
